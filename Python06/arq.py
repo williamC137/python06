@@ -3,6 +3,7 @@ from modelos import Pessoa, Marca, Veiculo
 
 #arquivo de como vai se chamar o banco
 banco = sqlite3.connect('database.db')
+#Ativar o uso da chave estrangeira para quando for chamada
 banco.execute ("PRAGMA foreign_keys=on")
 #para escrever em sql, para inserir os dados, deletar, as manipulações no banco
 cursor = banco.cursor()
@@ -24,7 +25,7 @@ pessoas = [
     Pessoa('54654656', 'William', '2004'),
     Pessoa('54767666', 'Pedro', '1999')
 ]
-
+#criando uma variável de inserção de dados
 comando = '''INSERT INTO Pessoa (cpf, nome, nascimento) VALUES (?, ?, ?);'''
 cursor.executemany(comando,[(i.cpf, i.nome, i.nascimento) for i in pessoas])
 # Salvar as alterações feitas nas tabela
